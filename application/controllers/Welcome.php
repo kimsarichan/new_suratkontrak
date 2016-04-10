@@ -33,22 +33,6 @@ class Welcome extends CI_Controller {
             $this->load->view('signIn');
         }
 	}
-	public function keanggotaan(){
-		$this->data['content']="anggota_view";
-		$this->load->view('index.html',$this->data);
-	}
-	public function kas(){
-		$this->data['content']="kas_view";
-		$this->load->view('index.html',$this->data);
-	}
-	public function inventaris(){
-		$this->data['content']="inventaris_view";
-		$this->load->view('index.html',$this->data);
-	}
-	public function kock(){
-		$this->data['content']="kock_view";
-		$this->load->view('index.html',$this->data);
-	}
 	#karyawan
 	public function login(){
 		$username=$this->input->post('username');
@@ -81,11 +65,11 @@ class Welcome extends CI_Controller {
 	}
 	public function karyawan(){
 		$this->data['content']="karyawan_view";
-		$this->load->view('index.html',$this->data);
+		$this->load->view('index',$this->data);
 	}
 	public function home(){
 		$this->data['content']="home";
-		$this->load->view('index.html',$this->data);
+		$this->load->view('index',$this->data);
 	}
 }
 

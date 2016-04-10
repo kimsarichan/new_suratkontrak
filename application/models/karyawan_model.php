@@ -87,14 +87,16 @@ class Karyawan_model extends CI_Model {
 		$this->db->where('idKaryawan', $idKaryawan);
 		$this->db->delete($this->table);
 	}
-	private function nama_perusahaan($idPerusahaan)
-	{
-		$this->db->from('perusahan');
-		$this->db->where('idPerusahaan', $idPerusahaan);
-		$query = $this->db->get();
 
+	public function get_nama_perusahaan($idPerusahaan){
+		$query=$this->db->query("Select * from perusahaan where idPerusahaan= ".$idPerusahaan." limit 1");
+		if($query){
+		#$r=$query->result_array();
 		return $query->row()->namaPerusahaan;
+		#return 1;
+		}
+		else{
+			return 0;
+		}
 	}
-
-
 }

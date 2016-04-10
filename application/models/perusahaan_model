@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Kock_model extends CI_Model {
+class Karyawan_model extends CI_Model {
 
-	var $table = 't_kock';
-	var $column = array('tanggal_permainan','jumlah_terpakai','total_bayar','status');
-	var $order = array('id_hutang' => 'desc');
+	var $table = 'perusahaan';
+	var $column = array('idPerusahaan','namaPerusahaan','alamatPerusahaan','nomorTelepon','namaDirektur');
+	var $order = array('idKaryawan' => 'desc');
 
 	public function __construct()
 	{
@@ -61,10 +61,10 @@ class Kock_model extends CI_Model {
 		return $this->db->count_all_results();
 	}
 
-	public function get_by_id($id)
+	public function get_by_id($idPerusahaan)
 	{
 		$this->db->from($this->table);
-		$this->db->where('id_hutang',$id);
+		$this->db->where('idPerusahaan',$idPerusahaan);
 		$query = $this->db->get();
 
 		return $query->row();
@@ -82,19 +82,11 @@ class Kock_model extends CI_Model {
 		return $this->db->affected_rows();
 	}
 
-	public function delete_by_id($id)
+	public function delete_by_id($idPerusahaan)
 	{
-		$this->db->where('id_hutang', $id);
+		$this->db->where('idPerusahaan', $idPerusahaan);
 		$this->db->delete($this->table);
 	}
 
-	public function get_detail_by_id($id)
-	{
-		$this->db->from('t_detail_kock');
-		$this->db->where('id_hutang',$id);
-		$query = $this->db->get();
-
-		return $query->result();
-	}
 
 }

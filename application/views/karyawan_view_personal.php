@@ -59,28 +59,67 @@
               		</div>
                  </div>
          	</form>
-         	<br><br>
+          <div class="container" style="width:1030px">
+          <br><br>
+          <table id="table_surat" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th>Nomor Surat</th>
+                <th>Tanggal Mulai</th>
+                <th>Tanggal Berakhir</th>
+                <th>Tugas</th>
+                <th>Perusahaan</th>
+                <th style="width:250px;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
          	<div class="col-lg-5">
          		<a class="btn btn-sm btn-primary" href="" title="Edit" ><i class="glyphicon glyphicon-arrow-left"></i>Back </a>
-         		<a class="btn btn-sm btn-danger" href="" onclick="printDiv('printableArea')" title="Edit" ><i class="glyphicon glyphicon-print"></i> Print </a>
+         		<a class="btn btn-sm btn-danger" href=<?php echo  site_url("Con_karyawan/print_data_personal_karyawan/$data_karyawan->idKaryawan")?> title="Edit" ><i class="glyphicon glyphicon-print"></i> Print </a>
         	</div>
         </div>
     </div>
 </div>
+<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
+<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+<script src="<?php echo base_url('assets/bootstrap/js/bootstrap-datepicker.js')?>"></script>
 <script type="text/javascript">
-    function printDiv(divName) {
-        var printContents = document.getElementById(divName).innerHTML;
-        var originalContents = document.body.innerHTML;
-        document.body.innerHTML = printContents;
-        window.print();
-        document.body.innerHTML = originalContents;
-    }
+ var save_method; //for save method string
+  var id = "<?php echo $data_karyawan->idKaryawan; ?>";
+  var table;
+  $(document).ready(function() {
+    table = $('#table_surat').DataTable({ 
+      
+      "processing": true, //Feature control the processing indicator.
+      "serverSide": true, //Feature control DataTables' server-side processing mode.
+      
+      // Load data for the table's content from an Ajax source
+      "ajax": {
+          "url": "<?php echo site_url('con_karyawan/ajax_list_surat/"+id+"')?>",
+          "type": "POST"
+      },
+
+      //Set column definition initialisation properties.
+      "columnDefs": [
+      { 
+        "targets": [ -1 ], //last column
+        "orderable": false, //set not orderable
+      },
+      ],
+
+    });
+  });
+  function reload_table()
+  {
+    table.ajax.reload(null,false); //reload datatable ajax 
+  }
+
+
+ 
 </script>
 <!--- print -->
-
-<div id='printableArea' class='hidden'>
-  <p>Nama: <?php echo $data_karyawan->nama ?></p> 
-  <p>Tempat lahir: <?php echo $data_karyawan->tempatLahir ?></p> 
-  <p>Tanggal lahir: <?php echo $data_karyawan->tglLahir ?></p> 
-  <p>Pendidikan : <?php echo $data_karyawan->pendidikan ?></p> 
-</div>
