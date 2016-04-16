@@ -1,6 +1,5 @@
 <div class="container" style="width:1030px">
-  <h2>Data Anggota</h2>
-  <br >
+  <h2>Data Karyawan</h2>
   <br >
   <br >
   <a class="btn btn-sm btn-danger" href="" onclick="printDiv('printableArea')" title="Edit" ><i class="glyphicon glyphicon-print"></i> Print </a>
@@ -22,12 +21,6 @@
   </table>
 </div>
 <?php  $this->load->view('modal_karyawan');?>
-<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
-<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
-<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
-<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
-<script src="<?php echo base_url('assets/bootstrap/js/bootstrap-datepicker.js')?>"></script>
-
 
 <script type="text/javascript">
 
@@ -99,9 +92,12 @@
         $('[name="alamat"]').val(data.alamat);
         $('[name="tempatLahir"]').val(data.tempatLahir);
         $('[name="tglLahir"]').val(data.tglLahir);
-        $('[name="tingkatPekerjaan"]').val(data.tingkatPekerjaan);
-        $('[name="NomorBPJS"]').val(data.NomorBPJS);
+        $('[name="unitKerja"]').val(data.unitKerja);
+        $('[name="Nomorbpjs"]').val(data.Nomorbpjs);
         $('[name="Norek"]').val(data.Norek);
+        $('[name="pendidikan"]').val(data.pendidikan);
+        $('[name="idPerusahaan"]').val(data.idPerusahaan);
+        $('[name="NomorTelp"]').val(data.NomorTelp);
         $('#modal_form').modal('show'); // show bootstrap modal twhen complete loaded
         $('.modal-title').text('Edit Karyawan'); // Set title to Bootstrap modal title
       },

@@ -29,8 +29,15 @@
                   <div class="col-md-9">
                     <input placeholder="<?php echo $data_karyawan->Norek?>" class="form-control" type="text" disabled>
                   </div>
+                  <br><br>
                  </div>
-                 <br><br>
+                    <div class="form-group">
+                    <label class="control-label col-md-3">Nomor Telepon </label>
+                  <div class="col-md-9">
+                    <input placeholder="<?php echo $data_karyawan->NomorTelp?>" class="form-control" type="text" disabled>
+                  </div>
+                 </div>
+                 <br><br><br>
                  <div class="form-group">
                     <label class="control-label col-md-3">Alamat</label>
               		<div class="col-md-9">
@@ -77,17 +84,14 @@
           </table>
         </div>
          	<div class="col-lg-5">
-         		<a class="btn btn-sm btn-primary" href="" title="Edit" ><i class="glyphicon glyphicon-arrow-left"></i>Back </a>
+         		<a class="btn btn-sm btn-primary" href="" ><i class="glyphicon glyphicon-arrow-left"></i>Back </a>
+            <a class="btn btn-sm btn-success" href="javascript:void()"  onclick="add_surat()" title="tambah surat" ><i class="glyphicon glyphicon-pencil"></i>Tambah Surat </a>
          		<a class="btn btn-sm btn-danger" href=<?php echo  site_url("Con_karyawan/print_data_personal_karyawan/$data_karyawan->idKaryawan")?> title="Edit" ><i class="glyphicon glyphicon-print"></i> Print </a>
         	</div>
         </div>
     </div>
 </div>
-<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
-<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
-<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
-<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
-<script src="<?php echo base_url('assets/bootstrap/js/bootstrap-datepicker.js')?>"></script>
+<?php  $this->load->view('modal_surat');?>
 <script type="text/javascript">
  var save_method; //for save method string
   var id = "<?php echo $data_karyawan->idKaryawan; ?>";
@@ -119,7 +123,56 @@
     table.ajax.reload(null,false); //reload datatable ajax 
   }
 
-
- 
+ function delete_surat(idSurat)
+  {
+    if(confirm('Apa anda akan menghapus data ini?'))
+    {
+      // ajax delete data to database
+        $.ajax({
+          url : "<?php echo site_url('con_karyawan/ajax_delete_surat')?>/"+idSurat,
+          type: "POST",
+          dataType: "JSON",
+          success: function()
+          {
+             //if success reload ajax table
+             reload_table();
+          },
+          error: function (jqXHR, textStatus, errorThrown)
+          {
+              reload_table();
+          }
+      });
+       
+    }
+  }
+ $(document).ready(function() {
+    $('#datetimepicker4').datepicker();
+})
+     function add_surat()
+    {
+      $('#modal_new').modal('show'); // show bootstrap modal
+      $('.modal-title').text('Add Anggota'); // Set Title to Bootstrap modal title
+    }
+     function save()
+    {
+      var url = "<?php echo site_url('con_karyawan/ajax_add_surat')?>";
+       // ajax adding data to database
+          $.ajax({
+            url : url,
+            type: "POST",
+            data: $('#form').serialize(),
+            dataType: "JSON",
+            success: function(data)
+            {
+               //if success close modal and reload ajax table
+               $('#modal_new').modal('hide');
+               reload_table();
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error adding / update data');
+            }
+        });
+    }
 </script>
 <!--- print -->

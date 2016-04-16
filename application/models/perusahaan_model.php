@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Karyawan_model extends CI_Model {
+class Perusahaan_model extends CI_Model {
 
 	var $table = 'perusahaan';
 	var $column = array('idPerusahaan','namaPerusahaan','alamatPerusahaan','nomorTelepon','namaDirektur');
@@ -90,3 +90,4 @@ class Karyawan_model extends CI_Model {
 
 
 }
+?>

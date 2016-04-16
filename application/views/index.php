@@ -8,6 +8,11 @@
 	<link href="<?php echo base_url()?>assets/bootstrap/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
+	<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap-datepicker.js')?>"></script>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">

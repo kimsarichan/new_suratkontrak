@@ -7,6 +7,29 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="<?php echo base_url()?>assets/bootstrap/icon/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <style type="text/css">
+    @font-face {
+      font-family: 'Cabin';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Cabin Regular'), local('Cabin-Regular'), url(<?php echo base_url(); ?>aset/font/satu.woff) format('woff');
+    }
+    @font-face {
+      font-family: 'Cabin';
+      font-style: normal;
+      font-weight: 700;
+      src: local('Cabin Bold'), local('Cabin-Bold'), url(<?php echo base_url(); ?>aset/font/dua.woff) format('woff');
+    }
+    @font-face {
+      font-family: 'Lobster';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Lobster'), url(<?php echo base_url(); ?>aset/font/tiga.woff) format('woff');
+    } 
+    
+    </style>
 
     <title>Karyawan Kontrak</title>
 

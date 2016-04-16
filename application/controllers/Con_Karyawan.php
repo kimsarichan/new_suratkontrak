@@ -8,6 +8,7 @@ class Con_karyawan extends CI_Controller {
 		$models = array(
 		    'karyawan_model' => 'karyawan',
 		    'surat_model' => 'surat',
+		     'perusahaan_model' => 'perusahaan',
 		);
 
 		foreach ($models as $file => $object_name)
@@ -81,7 +82,9 @@ class Con_karyawan extends CI_Controller {
                 'unitKerja' => $this->input->post('unitKerja'),
                 'pendidikan'=>$this->input->post('pendidikan'),
                 'Norek'=>$this->input->post('Norek'),
-                'Nomorbpjs'=>$this->input->post('Nomorbpjs')
+                'Nomorbpjs'=>$this->input->post('Nomorbpjs'),
+                 'idPerusahaan'=>$this->input->post('idPerusahaan'),
+                 'NomorTelp'=>$this->input->post('NomorTelp')
 			);
 		$this->karyawan->update(array('idKaryawan' => $this->input->post('idKaryawan')), $data);
 		echo json_encode(array("status" => TRUE));
@@ -90,10 +93,19 @@ class Con_karyawan extends CI_Controller {
 		$id=$this->uri->segment(3);
 		$data_karyawan=$this->karyawan->get_by_id($id);
 		$this->data['data_karyawan']=$data_karyawan;
-		$data_normal='';
 		$data_surat = $this->surat->get_datatables_normal($id);
 		$this->data['data_surat']=$data_surat;
 		$this->load->view("print_surat",$this->data);
+	}
+	public function print_surat_personal_karyawan(){
+		$id=$this->uri->segment(3);
+		$data_surat = $this->surat->get_by_id($id);
+		$this->data['data_surat']=$data_surat;
+		$data_karyawan=$this->karyawan->get_by_id($data_surat->idKaryawan);
+		$this->data['data_karyawan']=$data_karyawan;
+		$data_perusahaan=$this->perusahaan->get_by_id($data_surat->idPerusahaan);
+		$this->data['data_perusahaan']=$data_perusahaan;
+		$this->load->view("print_surat_generate",$this->data);
 	}
 	public function ajax_list_surat()
 	{
@@ -111,8 +123,8 @@ class Con_karyawan extends CI_Controller {
 					$row[]=	 $surat->tglBerakhir;
 		            $row[] = $surat->tugas;
 		            $row[]=	$this->karyawan->get_nama_perusahaan($surat->idPerusahaan);
-		            $row[] = '<a class="btn btn-sm btn-info" href="" title="Lihat"><i class="glyphicon glyphicon-user"></i> lihat </a> <a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick=""><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-						  <a class="btn btn-sm btn-danger" href="javascript:void()" title="Hapus" onclick=""><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+		            $row[] = '<a class="btn btn-sm btn-info" href="'. site_url("Con_karyawan/print_surat_personal_karyawan/".$surat->idSurat).'" title="Lihat"><i class="glyphicon glyphicon-user"></i> lihat </a> <a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick=""><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+						  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_surat('."'".$surat->idSurat."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
 					$data[] = $row;
 				}
     	}
@@ -128,6 +140,20 @@ class Con_karyawan extends CI_Controller {
 	public function ajax_delete_surat($idSurat)
 	{
 		$this->surat->delete_by_id($idSurat);
+		echo json_encode(array("status" => TRUE));
+	}
+	public function ajax_add_surat()
+	{
+		$data = array(
+				'nomor' => $this->input->post('nomor'),
+				 'idPerusahaan' => $this->input->post('idPerusahaan'),
+                'idKaryawan' => $this->input->post('idKaryawan'),
+                'tglMulai' => Date('Y-m-d'),
+                'tglBerakhir'=>$this->input->post('tglBerakhir'),
+                'tugas'=>$this->input->post('tugas'),
+                'penempatanKaryawan'=>$this->input->post('penempatanKaryawan')
+			);
+		$insert = $this->surat->save($data);
 		echo json_encode(array("status" => TRUE));
 	}
 }

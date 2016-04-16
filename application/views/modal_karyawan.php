@@ -20,6 +20,17 @@
       </div>
        <div class="form-body">
         <div class="form-group">
+          <label class="control-label col-md-3">Perusahaan </label>
+          <div class="col-md-9">
+            <select name="idPerusahaan" class="form-control">
+              <option value="1" >Silen</option>
+              <option value="2" >Koperasi</option>
+            </select>
+          </div>
+        </div>
+      </div>
+       <div class="form-body">
+        <div class="form-group">
           <label class="control-label col-md-3">Alamat</label>
           <div class="col-md-9">
             <input name="alamat" placeholder="alamat" class="form-control" type="text">
@@ -53,7 +64,12 @@
         <div class="form-group">
           <label class="control-label col-md-3">Pendidikan </label>
           <div class="col-md-9">
-            <input name="pendidikan" placeholder="pendidikan" class="form-control" type="text">
+            <select name="pendidikan" class="form-control">
+              <option value="SD" >SD</option>
+              <option value="SMP" >SMP</option>
+              <option value="SMA" >SMA</option>
+              <option value="S1" >S1</option>
+            </select>
           </div>
         </div>
       </div>
@@ -70,6 +86,14 @@
           <label class="control-label col-md-3">Nomor Rekening </label>
           <div class="col-md-9">
             <input name="Norek" placeholder="Norek" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="form-body">
+        <div class="form-group">
+          <label class="control-label col-md-3">Nomor Telepon </label>
+          <div class="col-md-9">
+            <input name="NomorTelp" placeholder="NoTelp" class="form-control" type="text">
           </div>
         </div>
       </div>

@@ -36,7 +36,15 @@
 <title>Cetak Data Karyawan</title>
 </head>
 <body onload="window.print()">
-	<center><b style="font-size: 20px">Data Karyawan</b><br>
+	<b style="font-size: 20px">Data Karyawan</b><br>
+	<p style="font-size: 14px">Nama : <?php echo $data_karyawan->nama;?></p>
+	<p style="font-size: 14px">Alamat : <?php echo $data_karyawan->alamat;?></p>
+	<p style="font-size: 14px">Tempat Lahir : <?php echo $data_karyawan->tempatLahir;?></p>
+	<p style="font-size: 14px">Tanggal Lahir : <?php echo $data_karyawan->tglLahir;?></p>
+	<p style="font-size: 14px">Nomor BPJS : <?php echo $data_karyawan->Nomorbpjs;?></p>
+	<p style="font-size: 14px">Nomor Rekening : <?php echo $data_karyawan->Norek;?></p>
+	<p style="font-size: 14px">Unit Kerja : <?php echo $data_karyawan->unitKerja;?></p>
+	<p style="font-size: 14px">Pendidikan : <?php echo $data_karyawan->pendidikan;?></p>
 	<table>
 		<thead>
 			<tr>

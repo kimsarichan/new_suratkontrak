@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Karyawan_model extends CI_Model {
 
 	var $table = 'karyawankontrak';
-	var $column = array('idKaryawan','idPerusahaan','status','nama','alamat','tingkatPekerjaan','unitKerja','tempatLahir','tglLahir','pendidikan','Nomorbpjs','Norek');
+	var $column = array('idKaryawan','idPerusahaan','status','nama','alamat','tingkatPekerjaan','unitKerja','tempatLahir','tglLahir','pendidikan','Nomorbpjs','Norek','NomorTelp','Image');
 	var $order = array('idKaryawan' => 'desc');
 
 	public function __construct()
