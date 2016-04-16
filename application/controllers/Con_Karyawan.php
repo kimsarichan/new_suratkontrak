@@ -156,5 +156,27 @@ class Con_karyawan extends CI_Controller {
 		$insert = $this->surat->save($data);
 		echo json_encode(array("status" => TRUE));
 	}
+	public function get_tanggalsisa($date_before,$date_after){
+
+		$diff=$date_before-$date_after;
+		$days=floor($diff/(60*60*24));
+
+		return $days;
+	}
+	public function get_pengalaman_kerja($idKaryawan){
+		$list = $this->surat->get_datatables($id);
+		$pengalaman= 0;
+		foreach ($list as $surat) {
+			$pengalaman=$pengalaman+$this->get_tanggalsisa(stroftime($surat->tglMulai),stroftime($surat->tglBerakhir));
+
+		}
+		return $pengalaman;
+	}
+	public function get_gaji($idKaryawan,$pengalaman){
+		$data_karyawan=$this->karyawan->get_by_id($idKaryawan);
+		if($data_karyawan->pendidikan=="S1" and $pengalaman<4*$pengalaman ){
+			return 10000;
+		}
+	}
 }
 ?>

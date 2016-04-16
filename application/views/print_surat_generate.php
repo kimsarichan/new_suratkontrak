@@ -36,7 +36,7 @@
 </HEAD>
 <?php
 	 $array_hari = array(1=>'Senin','Selasa','Rabu','Kamis','Jumat', 'Sabtu','Minggu');
-	 $array_bulan = array(1=>'Senin','Selasa','Rabu','Kamis','Jumat', 'Sabtu','Minggu');
+	 $array_bulan = array(1=>'Januari','Februari','Maret','April','Mei', 'Juni','Juli','Agustus','September','Oktober','November','Desember');
 	 if (!isset($_GET[$data_surat->tglMulai])) {
 	  $x=date("w", strtotime(str_replace('-','/',$data_surat->tglMulai)));
 	}
@@ -57,13 +57,12 @@ KERJA WAKTU TERTENTU</B></U></FONT></H1>
 </SPAN><I><B>Agustus</B></I><SPAN LANG="id-ID"><I> </I></SPAN>tahun<SPAN LANG="id-ID">
 </SPAN><I><B>Dua ribu </B></I><SPAN LANG="id-ID"><I><B>lima</B></I></SPAN><I><B>
 belas</B></I><SPAN LANG="id-ID"><I> </I></SPAN>bertempat di kantor
-PT. Silen Indonesia Jl. <SPAN LANG="id-ID">Batununggal B-9</SPAN>
+PT. Silen Indonesia Jl. Batununggal B-9
 Bandung, kami yang bertanda tangan dibawah : 
 </H1>
 <P LANG="en-GB" CLASS="western"><BR>
 </P>
-<P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY>I.	N a m a			: <B>Engkus
-Effi Kurnaefi</B></P>
+<P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY>I.	N a m a			: <B><?php echo $data_perusahaan->namaDirektur?></B></P>
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY>	Jabatan				: <B>Direktur
 Utama</B></P>
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY><BR>
@@ -76,25 +75,16 @@ Kesepakatan Kerja Waktu  Tertentu ini disebut sebagai PIHAK PERTAMA.
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY><BR>
 </P>
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY>II. 	N a m a 			:
-<B>Sutrisno, DR</B></P>
+<B><?php echo $data_karyawan->nama;?></B></P>
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.5in">
-Tempat dan tanggal lahir	: <B>Boyolali, 10 Desember 1956 </B> 
+Tempat dan tanggal lahir	: <B><?php echo $data_karyawan->tempatLahir?>, <?php echo $data_karyawan->tglLahir?> </B> 
 </P>
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.5in">
-Pendidikan			: <B>S3-USTL Montpellier II</B></P>
+Pendidikan			: <B><?php echo $data_karyawan->pendidikan?></B></P>
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.5in">
-Level Pekerjaan<B>		</B>:<B> Profesional</B></P>
+Level Pekerjaan<B>		</B>:<B> <?php echo $data_karyawan->unitKerja; ?></B></P>
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.5in">
-Alamat				: <B>Taman Kopo Indah O-61</B></P>
-<P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.5in">
-<B>				  Kel. Margahayu Selatan </B>
-</P>
-<P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY STYLE="margin-left: 2in; text-indent: 0.5in">
-  <B>Kec. Margahayu, Kab. Bandung 40226</B></P>
-<P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.5in">
-				  <B>Tlp. 5410861</B></P>
-<P LANG="en-GB" CLASS="western" STYLE="margin-left: 2.5in; text-indent: -2in">
-<BR>
+Alamat				: <B><?php echo $data_karyawan->alamat?> </B>
 </P>
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY>dalam Kesepakatan Kerja
 Waktu Tertentu ini bertindak atas nama dirinya sendiri yang
