@@ -29,18 +29,32 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <h4>Kontrak habis 2 minggu lagi</h4>
+                            <h4>Kontrak habis kurang dari 2 minggu lagi</h4>
+                            <!--list karyawan habis kontrak selama 2 minggu-->
                             <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    New Comment
-                                </a>
+                                <?php foreach ($karyawanlist2minggu as $karyawan) {?>
+                                    <a href=<?php echo site_url("Con_karyawan/lihat/".$karyawan->idKaryawan)?> class="list-group-item">
+                                        <?php echo $karyawan->nama?>
+                                        <?php $now = new DateTime();
+                                        $tglBerakhir = new DateTime($karyawan->tglBerakhir);
+                                        $datediff = $now->diff($tglBerakhir);?>
+                                        <span class="pull-right text muted small"><?php echo $datediff->days+1, " hari lagi";?></span>
+                                    </a>
+                                <?php };?>
                             </div>
                             <!-- /.list-group -->
-                            <h4>Kontrak habis 1 bulan lagi</h4>
+                            <h4>Kontrak habis kurang dari 1 bulan lagi</h4>
+                            <!--list karyawan habis kontrak selama 2 minggu-->
                             <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    New Comment
-                                </a>
+                                <?php foreach ($karyawanlist1bulan as $karyawan) {?>
+                                    <a href=<?php echo site_url("Con_karyawan/lihat/".$karyawan->idKaryawan)?> class="list-group-item">
+                                        <?php echo $karyawan->nama?>
+                                        <?php $now = new DateTime();
+                                        $tglBerakhir = new DateTime($karyawan->tglBerakhir);
+                                        $datediff = $now->diff($tglBerakhir);?>
+                                        <span class="pull-right text muted small"><?php echo $datediff->days+1, " hari lagi";?></span>
+                                    </a>
+                                <?php };?>
                             </div>
                         </div>
                         <!-- /.panel-body -->

@@ -63,13 +63,38 @@ class Welcome extends CI_Controller {
             #redirect('Welcome/index');
 			$this->load->view('login');
 	}
+
 	public function karyawan(){
 		$this->data['content']="karyawan_view";
 		$this->load->view('index',$this->data);
 	}
+	
 	public function home(){
 		$this->data['content']="home";
-		$this->load->view('index',$this->data);
+		$this->load->model('notif_model');
+		$this->data['karyawanlist2minggu'] = $this->notif_model->get_end_2_week();
+		$this->data['karyawanlist1bulan'] = $this->notif_model->get_end_1_month();
+		$this->load->view('index.html',$this->data);
+	}
+
+	public function laporan(){
+		$this->data['content']="laporan_view";
+		$this->load->model('laporan_model');
+		foreach ($this->laporan_model->get_count_karyawan_per_month() as $row) {
+			$this->data['grafik'][] = (float)$row['Januari'];
+			$this->data['grafik'][] = (float)$row['Februari'];
+			$this->data['grafik'][] = (float)$row['Maret'];
+			$this->data['grafik'][] = (float)$row['April'];
+			$this->data['grafik'][] = (float)$row['Mei'];
+			$this->data['grafik'][] = (float)$row['Juni'];
+			$this->data['grafik'][] = (float)$row['Juli'];
+			$this->data['grafik'][] = (float)$row['Agustus'];
+			$this->data['grafik'][] = (float)$row['September'];
+			$this->data['grafik'][] = (float)$row['Oktober'];
+			$this->data['grafik'][] = (float)$row['November'];
+			$this->data['grafik'][] = (float)$row['Desember'];
+		}
+		$this->load->view('index.html',$this->data);
 	}
 }
 
