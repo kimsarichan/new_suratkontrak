@@ -43,6 +43,14 @@
           </div>
         </div>
       </div>
+      <div class="form-body">
+        <div class="form-group">
+          <label class="control-label col-md-3">Gaji </label>
+          <div class="col-md-9">
+            <input name="gaji" placeholder="gaji" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
        <div class="form-body">
         <div class="form-group">
           <label class="control-label col-md-3">Tanggal Berakhir </label>       

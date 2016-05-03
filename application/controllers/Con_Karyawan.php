@@ -5,6 +5,7 @@ class Con_karyawan extends CI_Controller {
 	{
 		parent::__construct();
 		#$this->load->model('karyawan_model','karyawan');
+		$this->load->helper('url');
 		$models = array(
 		    'karyawan_model' => 'karyawan',
 		    'surat_model' => 'surat',
@@ -56,8 +57,7 @@ class Con_karyawan extends CI_Controller {
 		//output to json format
 		echo json_encode($output);
 	}
-	public function lihat() {
-		$id=$this->uri->segment(3);
+	public function lihat($id) {
 		$data_karyawan=$this->karyawan->get_by_id($id);
 		$this->data['content']="karyawan_view_personal";
 		$this->data['data_karyawan']=$data_karyawan;
@@ -74,6 +74,23 @@ class Con_karyawan extends CI_Controller {
 		echo json_encode($data);
 	}
 	public function ajax_update(){
+		$config['upload_path'] = './assets/';
+        $config['allowed_types'] = 'gif|jpg|png|doc|txt';
+        $config['max_size'] = 1024 * 8;
+         $data['errors'] = '';
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if(!$this->upload->do_upload("image")){
+	        //$data = $this->upload->data();
+	        //$file_id = $data['file_name'];
+	        $data['errors'] = $this->upload->display_errors();
+	       
+    	}
+    	else{
+    		$data = $this->upload->data();
+	        $file_id = $data['file_name'];
+    		$data['errors'] = "huray";
+    	}
 		$data = array(
 				'idKaryawan' => $this->input->post('idKaryawan'),
 				'nama' => $this->input->post('nama'),
@@ -83,8 +100,9 @@ class Con_karyawan extends CI_Controller {
                 'pendidikan'=>$this->input->post('pendidikan'),
                 'Norek'=>$this->input->post('Norek'),
                 'Nomorbpjs'=>$this->input->post('Nomorbpjs'),
-                 'idPerusahaan'=>$this->input->post('idPerusahaan'),
-                 'NomorTelp'=>$this->input->post('NomorTelp')
+                'idPerusahaan'=>$this->input->post('idPerusahaan'),
+                //'Image'=>$file_id,
+                'NomorTelp'=>$data['errors'] 
 			);
 		$this->karyawan->update(array('idKaryawan' => $this->input->post('idKaryawan')), $data);
 		echo json_encode(array("status" => TRUE));
@@ -172,11 +190,62 @@ class Con_karyawan extends CI_Controller {
 		}
 		return $pengalaman;
 	}
-	public function get_gaji($idKaryawan,$pengalaman){
-		$data_karyawan=$this->karyawan->get_by_id($idKaryawan);
-		if($data_karyawan->pendidikan=="S1" and $pengalaman<4*$pengalaman ){
-			return 10000;
+	public function tambah_karyawan(){
+		$this->data['content']="tambahkaryawan";   
+		$this->load->view('index',$this->data);
+
+	}
+	public function tambah(){
+		if($this->input->post('bpjs')=='none'){
+			$Nomorbpjs="belum ada";
 		}
+		elseif ($this->input->post('bpjs')=='dalam proses') {
+			$Nomorbpjs="dalam proses";
+		}
+		else{
+			$Nomorbpjs=$this->input->post('Nomorbpjs');
+		}
+		$hasil= $this->karyawan->count_row();
+		$data_karyawan = array(
+				'idKaryawan'=>((int)$hasil->NUM+1),
+				'nama' =>$this->input->post('nama') ,
+				'tempatLahir' =>$this->input->post('tempatLahir'),
+				'tglLahir' =>$this->input->post('tglLahir'),
+				'pendidikan'=>$this->input->post('pendidikan'),
+				'idPerusahaan'=>$this->input->post('idPerusahaan'),
+				'Nomorbpjs'=>$this->input->post('bpjs'),
+				'NomorbpjsKetenagaKerjaan'=>$this->input->post('NomorbpjsKetenagaKerjaan'),
+				'Norek'=>$this->input->post('Norek'),
+				'NomorTelp'=>$this->input->post('NomorTelp'),
+				'unitKerja'=>$this->input->post('unitKerja'),
+				'alamat'=>$this->input->post('alamat')
+		 );
+		$data_surat = array('nomor' =>$this->input->post('nomor') ,
+			'idPerusahaan'=>$this->input->post('idPerusahaan'),
+			'idKaryawan'=>((int)$hasil->NUM+1),
+	        'tglMulai' => Date('Y-m-d'),
+	        'tglBerakhir'=>$this->input->post('tglBerakhir'),
+	        'tugas'=>$this->input->post('tugas'),
+	        'penempatanKaryawan'=>$this->input->post('penempatanKaryawan')
+
+		 );
+		if($this->input->post('action')=='tambah'){
+		
+		$this->karyawan->save($data_karyawan);
+		$this->surat->save($data_surat);
+		echo "<script>
+             alert('data berhasil dimasukan');
+             </script>";
+        $this->lihat($data_karyawan['idKaryawan']);
+    	}
+    	elseif ($this->input->post('action')=='print') {
+    	$this->data['data_karyawan']=$data_karyawan;
+		$this->data['data_surat']=$data_surat;
+		$data_perusahaan=$this->perusahaan->get_by_id($data_surat['idPerusahaan']);
+		$this->data['data_perusahaan']=$data_perusahaan;
+		$this->load->view("print_surat_generate_preview",$this->data);
+    	}
+
 	}
 }
 ?>

@@ -68,7 +68,10 @@
               <option value="SD" >SD</option>
               <option value="SMP" >SMP</option>
               <option value="SMA" >SMA</option>
+              <option value="D3" >D3</option>
               <option value="S1" >S1</option>
+              <option value="S2" >S2</option>
+              <option value="S3" >S3</option>
             </select>
           </div>
         </div>
@@ -94,6 +97,14 @@
           <label class="control-label col-md-3">Nomor Telepon </label>
           <div class="col-md-9">
             <input name="NomorTelp" placeholder="NoTelp" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="form-body">
+        <div class="form-group">
+          <label class="control-label col-md-3">Foto </label>
+          <div class="col-md-9">
+            <input name="image" placeholder="image" class="form-control" id="image" type="file">
           </div>
         </div>
       </div>

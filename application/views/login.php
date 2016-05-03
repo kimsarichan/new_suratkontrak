@@ -34,17 +34,20 @@
 		<div style="width: 400px; margin: 0 auto">
 			<div class="well well-sm">
 				<img src="">
-				<h3 style="margin: 5px 0 0.4em 0; font-size: 21px; color: #000; font-weight: bold">PT LEN</h3>
-				<div style="color: #000; font-size: 13px" class="clearfix">Jln Soerkarno Hatta</div>
+				<h3 style="margin: 5px 0 0.4em 0; font-size: 21px; color: #000; font-weight: bold;"><center>Koperasi Karyawan</center></h3>
+				<h4  style="margin: 5px 0 0.4em 0; font-size: 21px; color: #000; font-weight: bold;align=centre"><center>PT Len Industri (Persero)</center></h4>
+				<div style="color: #000; font-size: 13px" class="clearfix"><center>Jln Soerkarno Hatta no 442 bandung 40254 Indonesia</center></div>
+				<div style="color: #000; font-size: 13px" class="clearfix"><center>Telepon (022) 5202682 fax (022)5231772</center></div>
 			 </div>
 		</div>
 		
 		<div class="well" style="width: 400px; margin: 20px auto; border: solid 1px #d9d9d9; padding: 30px 20px; border-radius: 8px">
 		<form action=<?php echo base_url()."index.php/Welcome/login"; ?> method="post">
 		<legend>Login Admin</legend>	
-		<table align="center"style="padding-bottom: 100%;" class="table-form" width="90%">
-			<tr ><td width="40%">Username</td><td><input type="text" autofocus name="username" required style="width: 200px" autofocus class="form-control"></td></tr>
-			<tr><br><td>Password</td><td><input type="password" name="password" required style="width: 200px" class="form-control"></td></tr>
+		<table align="center"style="padding-bottom: 10%;" class="table-form" width="90%">
+			<tr ><td width="40%">Username</td><td><input type="text" autofocus name="username" required style="width: 200px" autofocus class="form-control"><br></td>
+			</tr>
+			<tr><br><td>Password</td><td><input type="password" name="password" required style="width: 200px" class="form-control"><br></td></tr>
 			</td></tr>
 			<tr><td></td><td><input type="submit" class="btn btn-success" style="width: 200px" ></td></tr>
 		</table>

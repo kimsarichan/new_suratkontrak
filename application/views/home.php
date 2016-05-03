@@ -12,7 +12,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="<?php echo base_url('index.php/Con_karyawan/tambah_karyawan') ?>">
                     <div class="panel-footer">
                         <span class="pull-left">Tambah Surat</span>
                         <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>

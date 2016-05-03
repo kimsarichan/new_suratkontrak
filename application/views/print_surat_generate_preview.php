@@ -37,20 +37,20 @@
 <?php
 	 $array_hari = array(1=>'Senin','Selasa','Rabu','Kamis','Jumat', 'Sabtu','Minggu');
 	 $array_bulan = array(1=>'Januari','Februari','Maret','April','Mei', 'Juni','Juli','Agustus','September','Oktober','November','Desember');
-	 if (!isset($_GET[$data_surat->tglMulai])) {
-	  $x=date("w", strtotime(str_replace('-','/',$data_surat->tglMulai)));
+	 if (!isset($_GET[$data_surat['tglMulai']])) {
+	  $x=date("w", strtotime(str_replace('-','/',$data_surat['tglMulai'])));
 	}
 ?>
 <BODY>
 <H1 LANG="en-GB" CLASS="western" ALIGN=CENTER><FONT SIZE=4><U><B>KESEPAKATAN
 KERJA WAKTU TERTENTU</B></U></FONT></H1>
 <P CLASS="western" ALIGN=CENTER><FONT SIZE=4><SPAN LANG="en-GB"><B>NO
-: </B></SPAN></FONT><FONT SIZE=4><SPAN LANG="id-ID"><B>442</B></SPAN></FONT><FONT SIZE=4><SPAN LANG="en-GB"><B><?php echo $data_surat->nomor; ?></B></SPAN></FONT><FONT SIZE=4><SPAN LANG="id-ID"><B>5</B></SPAN></FONT></P>
+: </B></SPAN></FONT><FONT SIZE=4><SPAN LANG="id-ID"><B>442</B></SPAN></FONT><FONT SIZE=4><SPAN LANG="en-GB"><B><?php echo $data_surat['nomor']; ?></B></SPAN></FONT><FONT SIZE=4><SPAN LANG="id-ID"><B>5</B></SPAN></FONT></P>
 
 <H1 LANG="en-GB" CLASS="western" ALIGN=JUSTIFY>Pada hari ini, <SPAN LANG="id-ID"><I><B><?php echo $array_hari[$x];?></B></I></SPAN><I><B>
 </B></I>tanggal <SPAN LANG="id-ID"><I><B>Tiga </B></I></SPAN><SPAN LANG="id-ID">b</SPAN>ulan<SPAN LANG="id-ID">
-</SPAN><I><B>Agustus</B></I><SPAN LANG="id-ID"><I> </I></SPAN>tahun<SPAN LANG="id-ID">
-</SPAN><I><B>Dua ribu </B></I><SPAN LANG="id-ID"><I><B>lima</B></I></SPAN><I><B>
+</SPAN><I><B><?php echo $array_bulan[$x];?></B></I><SPAN LANG="id-ID"><I> </I></SPAN>tahun<SPAN LANG="id-ID">
+</SPAN><I><B>Dua ribu </B></I><SPAN LANG="id-ID"><I><B>enam</B></I></SPAN><I><B>
 belas</B></I><SPAN LANG="id-ID"><I> </I></SPAN>bertempat di kantor
 PT. Silen Indonesia Jl. Batununggal B-9
 Bandung, kami yang bertanda tangan dibawah: 
@@ -66,16 +66,16 @@ Kesepakatan Kerja Waktu  Tertentu ini disebut sebagai PIHAK PERTAMA.
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY><BR>
 </P>
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY>II. 	N a m a 			:
-<B><?php echo $data_karyawan->nama;?></B></P>
+<B><?php echo $data_karyawan['nama'];?></B></P>
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 1 in">
-Tempat dan tanggal lahir	: <B><?php echo $data_karyawan->tempatLahir;?>, <?php echo $data_karyawan->tglLahir;?> </B> 
+Tempat dan tanggal lahir	: <B><?php echo $data_karyawan['tempatLahir'];?>, <?php echo $data_karyawan['tglLahir'];?> </B> 
 </P>
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 1 in">
-Pendidikan			: <B><?php echo $data_karyawan->pendidikan;?></B></P>
+Pendidikan			: <B><?php echo $data_karyawan['pendidikan'];?></B></P>
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 1 in">
-Level Pekerjaan<B>		</B>:<B> <?php echo $data_karyawan->unitKerja; ?></B></P>
+Level Pekerjaan<B>		</B>:<B> <?php echo $data_karyawan['unitKerja']; ?></B></P>
 <P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 1 in">
-Alamat				: <B><?php echo $data_karyawan->alamat;?> </B>
+Alamat				: <B><?php echo $data_karyawan['alamat'];?> </B>
 </P>
 <P CLASS="western" ALIGN=JUSTIFY>dalam Kesepakatan Kerja
 Waktu Tertentu ini bertindak atas nama dirinya sendiri yang
@@ -85,16 +85,6 @@ selanjutnya dalam perjanjian ini disebut sebagai PIHAK KEDUA.
 <P CLASS="western" ALIGN=JUSTIFY><SPAN LANG="en-GB">Dengan ini kedua
 belah pihak telah sepakat untuk mengadakan kesepakatan dengan
 ketentuan dan syarat - syarat sebagai berikut : </SPAN>
-</P>
-<P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY><BR>
-</P>
-<P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY><BR>
-</P>
-<P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY><BR>
-</P>
-<P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY><BR>
-</P>
-<P LANG="en-GB" CLASS="western" ALIGN=JUSTIFY><BR>
 </P>
 <P LANG="en-GB" CLASS="western" ALIGN=CENTER><B>PASAL 1</B></P>
 <P LANG="en-GB" CLASS="western" ALIGN=CENTER><B>S T A T U S</B></P>
@@ -280,8 +270,7 @@ ketentuan dan syarat - syarat sebagai berikut : </SPAN>
 </P>
 <P LANG="en-GB" ALIGN=JUSTIFY><BR>
 </P>
-<P LANG="en-GB" ALIGN=JUSTIFY><BR>
-</P>
+<P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
 <H5 LANG="en-GB" CLASS="western" ALIGN=CENTER STYLE="margin-left: 0in; text-indent: 0in">
 <B>PASAL 5</B></H5>
 <P LANG="en-GB" ALIGN=CENTER><B>LAIN - LAIN</B></P>
@@ -308,6 +297,20 @@ ketentuan dan syarat - syarat sebagai berikut : </SPAN>
 </OL>
 <P LANG="en-GB" ALIGN=JUSTIFY><BR>
 </P>
+<P LANG="en-GB" ALIGN=JUSTIFY><BR>
+</P>
+<P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
+<P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
+<P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
+	<P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
+<P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
+<P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
+	<P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
+<P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
+<P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
+<P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
+<P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
+<P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
 <P LANG="en-GB" ALIGN=CENTER><B>PASAL 6</B></P>
 <P LANG="en-GB" ALIGN=CENTER><B>PENUTUP</B></P>
 <P LANG="en-GB" ALIGN=JUSTIFY><BR>
@@ -327,8 +330,8 @@ ketentuan dan syarat - syarat sebagai berikut : </SPAN>
 	ini dibuat dan ditandatangani oleh kedua belah pihak dalam rangkap 2
 	(dua) diatas meterai secukupnya. ---------------------------------</P>
 </OL>
-<P LANG="en-GB" ALIGN=JUSTIFY><BR>
-</P>
+
+
 <P LANG="en-GB" ALIGN=JUSTIFY>Demikian kesepakatan kerja ini dibuat
 untuk dipenuhi dan dilaksanakan oleh kedua belah pihak, setelah
 ditandatangani oleh masing - masing pihak pada tanggal kesepakatan
@@ -336,21 +339,12 @@ ini dibuat.
 ------------------------------------------------------------------------------</P>
 <P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
 </P>
-<P LANG="en-GB" ALIGN=JUSTIFY><BR>
-</P>
-<P LANG="en-GB" ALIGN=JUSTIFY><BR>
-</P>
-<P LANG="en-GB" ALIGN=JUSTIFY><BR>
-</P>
-<BR><BR><BR>
-	<P LANG="en-GB" ALIGN=JUSTIFY STYLE="margin-left: 1.5in"><BR>
-</P>
 <TABLE WIDTH=581 CELLPADDING=7 CELLSPACING=0>
 	<COL WIDTH=277>
 	<COL WIDTH=277>
 	<TR VALIGN=TOP>
 		<TD WIDTH=277 STYLE="border: none; padding: 0in">
-			<P LANG="en-GB" ALIGN=CENTER><B>PIHAK KEDUA sjasakjs</B></P>
+			<P LANG="en-GB" ALIGN=CENTER><B>PIHAK KEDUA</B></P>
 			<P LANG="en-GB" ALIGN=CENTER><BR>
 			</P>
 			<P LANG="en-GB" ALIGN=CENTER><BR>
@@ -361,7 +355,7 @@ ini dibuat.
 			</P>
 			<P LANG="en-GB" ALIGN=CENTER><BR>
 			</P>
-			<P LANG="en-GB" ALIGN=CENTER><B><?php echo $data_karyawan->nama;?></B></P>
+			<P LANG="en-GB" ALIGN=CENTER><B><?php echo $data_karyawan['nama'];?></B></P>
 			<P LANG="en-GB" ALIGN=CENTER><BR>
 			</P>
 		</TD>

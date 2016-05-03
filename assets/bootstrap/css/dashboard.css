@@ -447,3 +447,9 @@ body {
 .panel-danger > .panel-footer + .panel-collapse > .panel-body {
   border-bottom-color: #ebccd1;
 }
+.navbar-default .navbar-brand {
+    color: #337ab7;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #337ab7;
+}

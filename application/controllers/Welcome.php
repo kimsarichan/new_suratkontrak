@@ -18,18 +18,31 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+	var $data_user;
+	var $username_coba;
 
 
 	public function __construct(){
 		parent::__construct();
-	    $this->load->model('Login_model');
+				#$this->load->model('karyawan_model','karyawan');
+		$models = array(
+		    'login_model' => 'Login_model',
+		    'user_model' => 'user'
+		);
+
+		foreach ($models as $file => $object_name)
+		{
+		    $this->load->model($file, $object_name);
+		}
 	}
 
 	public function index()
 	{
+
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 		if ($this->form_validation->run() == FALSE){
+
             $this->load->view('login');
         }
 	}
@@ -45,6 +58,7 @@ class Welcome extends CI_Controller {
                         );
             $this->session->set_userdata($sessiondata);
             #redirect('Welcome/index');
+
 			$this->home();
 		}
 		else{
@@ -71,10 +85,10 @@ class Welcome extends CI_Controller {
 	
 	public function home(){
 		$this->data['content']="home";
-		$this->load->model('notif_model');
+		$this->load->model('notif_model',"notif_model");
 		$this->data['karyawanlist2minggu'] = $this->notif_model->get_end_2_week();
-		$this->data['karyawanlist1bulan'] = $this->notif_model->get_end_1_month();
-		$this->load->view('index.html',$this->data);
+		$this->data['karyawanlist1bulan'] = $this->notif_model->get_end_1_month();		           
+		$this->load->view('index',$this->data);
 	}
 
 	public function laporan(){
@@ -94,7 +108,7 @@ class Welcome extends CI_Controller {
 			$this->data['grafik'][] = (float)$row['November'];
 			$this->data['grafik'][] = (float)$row['Desember'];
 		}
-		$this->load->view('index.html',$this->data);
+		$this->load->view('index',$this->data);
 	}
 }
 

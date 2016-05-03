@@ -17,9 +17,6 @@
                     title: {
                         text: 'Jumlah Karyawan per Bulan ('.concat(new Date().getFullYear() ,')')
                     },
-                    subtitle: {
-                        text: 'Hafidz is Good'
-                    },
                     xAxis: {
                         type: 'category',
                         categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
@@ -68,9 +65,6 @@
                     },
                     title: {
                         text: 'Jumlah Karyawan per Bulan ('.concat(new Date().getFullYear() ,')')
-                    },
-                    subtitle: {
-                        text: 'Hafidz is Good'
                     },
                     xAxis: {
                         type: 'category',
